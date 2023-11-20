@@ -1,0 +1,79 @@
+/* App.css */
+.App {
+    text-align: center;
+    font-family: Arial, sans-serif;
+  }
+  
+  .item {
+    padding: 10px;
+    border: 1px solid #ccc;
+    
+    list-style: none;
+    display: flex;
+    
+    align-items: center;
+    margin: 5px;
+  }
+  
+  
+  .item.completed {
+    background-color: aqua;
+  }
+  
+  .button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    margin: 2px;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  .icon {
+    font-size: 1.2em;
+  }
+  
+  .priority {
+    font-weight: bold;
+    margin: 0 10px;
+  }
+  
+  .sort-button {
+    background-color: #28a745;
+  }
+  
+  .input {
+    padding: 5px;
+    border: 1px solid #ccc;
+    margin: 5px;
+    border-radius: 4px;
+  }
+  
+  .form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid lightgray;
+    padding: 10px;
+  }
+
+  .btns{
+  
+    margin-left: auto;
+  }
+
+  .task{
+    cursor: pointer;
+  }
+  
+  .edit-input::before{
+    border: none;
+  }
+
+  .edit-input::after{
+    border: none;
+  }
+  .edit-input:focus{
+    border: none;
+  }
