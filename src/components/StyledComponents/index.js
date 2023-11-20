@@ -18,7 +18,6 @@ export const Wrapper = styled.div`
   display: flex;
 
   border-bottom: 1px solid lightgrey;
-
   &.sidebar-active {
     @media (max-width: 1000px) {
       position: relative;
@@ -152,9 +151,12 @@ export const StyledLink = styled(Link)`
 
 export const Header = styled.header`
   width: 100%;
-  min-height: 175px;
+  min-height: 150px;
   padding-bottom: 0.25rem;
   border-bottom: 1px solid lightgrey;
+  @media (max-width: 855px) {
+    min-height: 100px;
+  }
 `;
 export const Paragraph = styled.p`
   font-size: 14px;
@@ -193,7 +195,7 @@ export const Hero = styled.div`
     div:first-child {
       width: 100%;
       display: flex;
-      padding: 0.5rem 0;
+      padding: 0 0;
       text-align: center;
       justify-content: center;
       h2 {
@@ -205,7 +207,7 @@ export const Hero = styled.div`
       width: 100%;
       display: flex;
       justify-content: center;
-      padding: 0.5rem 0;
+      padding: 0.5rem 0.5rem;
       p {
         font-size: 11px;
         text-align: center;
@@ -313,7 +315,6 @@ export const WeatheCondition = styled.div`
   flex-direction: column;
   border-left: 1px solid lightgrey;
   cursor: pointer;
-  /* flex-wrap: wrap; */
   @media (max-width: 750px) {
     flex-direction: row;
   }
@@ -338,7 +339,7 @@ export const WeatheConditionCard = styled.div`
   }
 
   &:hover {
-    border-left: 3px solid ${accentColor};
+    border-left: 2px solid ${accentColor};
   }
 
   @media (max-width: 750px) {
