@@ -16,7 +16,6 @@ import {
   GlobalStyle,
   StyledLink,
   Menu,
-  Backdrop,
 } from "../StyledComponents";
 import { City } from "../CityComponent";
 
@@ -209,7 +208,9 @@ const Navigation = () => {
           </Sidebar>
         )}
         <OutletComponent>
-          <Outlet />
+          <div onClick={handleDismis}>
+            <Outlet />
+          </div>
         </OutletComponent>
       </Wrapper>
     </>

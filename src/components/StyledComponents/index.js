@@ -11,7 +11,7 @@ export const GlobalStyle = createGlobalStyle`
     position:relative;
   }
 
- 
+
 `;
 
 export const Wrapper = styled.div`
@@ -33,10 +33,6 @@ export const Wrapper = styled.div`
       }
     }
   }
-`;
-
-export const Backdrop = styled.div`
-  position: relative;
 `;
 
 export const Sidebar = styled.div`
