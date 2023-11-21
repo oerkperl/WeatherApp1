@@ -22,7 +22,7 @@ export const Weather = ({ weather }) => {
     iconUrl = `https://openweathermap.org/img/wn/${weatheArr.icon}@2x.png`;
   }
   const [backgroundUrl, setBackgroundUrl] = useState("");
-  const { name, sys, main, visibility, wind } = weather;
+  const { name, main, visibility, wind } = weather;
   const defaultUrl =
     "https://i.ibb.co/sCyBVrp/Dream-Shaper-v7-weather-app-UI-beautifully-centred-for-desktop-3.jpg";
 
