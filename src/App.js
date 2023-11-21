@@ -1,9 +1,7 @@
-//import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navigation from "./components/Navigation";
 import Home from "./Pages/Home";
 import City from "./Pages/City";
-// import Contact from "./Pages/Contact";
 import NoPage from "./Pages/NoPage";
 
 export default function App() {
