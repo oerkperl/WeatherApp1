@@ -33,7 +33,7 @@ const City = () => {
   return (
     <>
       {isLoading && <SpinnerContainer size="60px" />}
-      <Weather weather={currentCity} />;
+      <Weather weather={currentCity} />
     </>
   );
 };
