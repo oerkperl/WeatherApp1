@@ -19,7 +19,9 @@ export const fetchWeatherImage = async (weather, handler) => {
     const unsplashApiUrl = `https://api.unsplash.com/photos/random?query=${weather}&client_id=${apiKey}`;
     const { data } = await axios(unsplashApiUrl);
     handler(data.urls.small);
-  } catch (error) {}
+  } catch (error) {
+    return;
+  }
 };
 
 export const getCurrentPosition = () => {
