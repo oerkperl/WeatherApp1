@@ -270,26 +270,31 @@ const Card = styled.div.attrs((props) => ({
 }))`
   color: #fff;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   min-height: 100px;
 `;
+export const TranspareFilm = styled.div`
+  position: absolute;
+  background: rgba(0, 0, 0, 0.5);
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.25rem;
+`;
 
+export const WeatherIcon = styled.div`
+  position: absolute;
+  z-index: 3;
+  right: 0;
+`;
 export const BigCard = styled(Card)`
-margin:1rem 0;
+  margin: 1rem 0;
 
   background: url(${(props) => props.image}});
-  background-size: cover; 
+  background-size: cover;
   background-position: center;
-  span{
-    padding:0 0 .5rem .5rem;
-    background: rgba(0, 0, 0, 0.5);
-    
-  }
-  
-  span:nth-child(3) {
+  position: relative;
+  div:nth-child(3) {
     font-size: 28px;
-    bac
   }
 `;
 
@@ -299,14 +304,7 @@ export const SmallCard = styled(Card)`
   background: url(${(props) => props.image});
   background-size: cover;
   background-position: center;
-  span {
-    padding: 0 0.5rem;
-    background: rgba(0, 0, 0, 0.5);
-    height: 100%;
-  }
-  span:nth-child(2) {
-    font-size: 28px;
-  }
+  position: relative;
 
   @media (max-width: 1189px) {
     width: 47.5%;

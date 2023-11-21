@@ -11,6 +11,8 @@ import {
   WeatheCondition,
   WeatheConditionCard,
   Paragraph,
+  TranspareFilm,
+  WeatherIcon,
 } from "../StyledComponents";
 import { fetchWeatherImage } from "../../Utilities/Functions";
 
@@ -21,10 +23,10 @@ export const Weather = ({ weather }) => {
     weatheArr = weather.weather[0];
     iconUrl = `https://openweathermap.org/img/wn/${weatheArr.icon}@2x.png`;
   }
-  const [backgroundUrl, setBackgroundUrl] = useState("");
+  const [backgroundUrl, setBackgroundUrl] = useState(
+    "https://i.ibb.co/sCyBVrp/Dream-Shaper-v7-weather-app-UI-beautifully-centred-for-desktop-3.jpg"
+  );
   const { name, main, visibility, wind } = weather;
-  const defaultUrl =
-    "https://i.ibb.co/sCyBVrp/Dream-Shaper-v7-weather-app-UI-beautifully-centred-for-desktop-3.jpg";
 
   useEffect(() => {
     fetchWeatherImage(weatheArr?.description, setBackgroundUrl);
@@ -52,36 +54,46 @@ export const Weather = ({ weather }) => {
         <Container>
           <Lable>Recent Place</Lable>
           <BigCard image={backgroundUrl}>
-            <span>
+            <WeatherIcon>
               {weatheArr && (
                 <img src={iconUrl} alt="Icon" width={50} height={50} />
               )}
-            </span>
-            {weatheArr && <span>{weatheArr.main}</span>}
-            <span>{Math.round(main?.temp)}°C</span>
-            <span>{name}</span>
+            </WeatherIcon>
+            <TranspareFilm>
+              {weatheArr && <div>{weatheArr.main}</div>}
+              <div>{Math.round(main?.temp)}°C</div>
+              <div>{name}</div>
+            </TranspareFilm>
           </BigCard>
           <Lable>Weather</Lable>
           <WeatheCards>
             <SmallCard image={backgroundUrl}>
-              <span>Feels Like</span>
-              <span>{Math.round(main?.feels_like)}°C</span>
-              {weatheArr && <span>{weatheArr.main}</span>}
+              <TranspareFilm>
+                <div>Feels Like</div>
+                <div>{Math.round(main?.feels_like)}°C</div>
+                {weatheArr && <div>{weatheArr.main}</div>}
+              </TranspareFilm>
             </SmallCard>
             <SmallCard image={backgroundUrl}>
-              <span>Max Temp.</span>
-              <span>{Math.round(main?.temp_max)}°C</span>
-              {weatheArr && <span>{weatheArr.main}</span>}
+              <TranspareFilm>
+                <div>Max Temp.</div>
+                <div>{Math.round(main?.temp_max)}°C</div>
+                {weatheArr && <div>{weatheArr.main}</div>}
+              </TranspareFilm>
             </SmallCard>
             <SmallCard image={backgroundUrl}>
-              <span>Min Temp.</span>
-              <span>{Math.round(main?.temp_min)}°C</span>
-              {weatheArr && <span>{weatheArr.main}</span>}
+              <TranspareFilm>
+                <div>Min Temp.</div>
+                <div>{Math.round(main?.temp_min)}°C</div>
+                {weatheArr && <div>{weatheArr.main}</div>}
+              </TranspareFilm>
             </SmallCard>
             <SmallCard image={backgroundUrl}>
-              <span>Coulds</span>
-              <span>{Math.round(main?.temp)}°C</span>
-              {weatheArr && <span>{weatheArr.description}</span>}
+              <TranspareFilm>
+                <div>Coulds</div>
+                <div>{Math.round(main?.temp)}°C</div>
+                {weatheArr && <div>{weatheArr.description}</div>}
+              </TranspareFilm>
             </SmallCard>
           </WeatheCards>
         </Container>
