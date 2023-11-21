@@ -252,7 +252,7 @@ const Card = styled.div.attrs((props) => ({
     "https://i.ibb.co/sCyBVrp/Dream-Shaper-v7-weather-app-UI-beautifully-centred-for-desktop-3.jpg",
 }))`
   color: #fff;
-  padding-left: 1rem;
+  //padding-left: 1rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -262,13 +262,15 @@ const Card = styled.div.attrs((props) => ({
 export const BigCard = styled(Card)`
 margin:1rem 0;
 
-
   background: url(${(props) => props.image}});
   background-size: cover; 
   background-position: center;
-  
   span{
     padding:0 0 .5rem .5rem;
+    background: rgba(0, 0, 0, 0.5);
+    height: 100%;
+    
+    //width:30%;
   }
   
   span:nth-child(3) {
@@ -279,19 +281,22 @@ margin:1rem 0;
 
 export const SmallCard = styled(Card)`
   margin-top: 1rem;
-  width: 20%;
+  width: 22.5%;
   background: url(${(props) => props.image});
   background-size: cover;
   background-position: center;
   span {
-    padding: 0.5rem 0;
+    padding: 0 0.5rem;
+
+    background: rgba(0, 0, 0, 0.5);
+    height: 100%;
   }
   span:nth-child(2) {
     font-size: 28px;
   }
 
   @media (max-width: 1189px) {
-    width: 45%;
+    width: 47.5%;
     margin: 2% 0;
   }
 

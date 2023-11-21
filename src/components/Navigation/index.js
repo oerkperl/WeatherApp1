@@ -50,7 +50,7 @@ const Navigation = () => {
   };
 
   const getWeather = async (city, id) => {
-    const apiKey = "c816bfd866472a5d5c34043417f2524c";
+    const apiKey = process.env.REACT_APP_API_KEY_WEATHER;
     try {
       setIsLoading(true);
       const { data } = await axios(

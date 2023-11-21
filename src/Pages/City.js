@@ -10,9 +10,9 @@ const City = () => {
 
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
+  const apiKey = process.env.REACT_APP_API_KEY_WEATHER;
 
   const getWeather = async (cityName) => {
-    const apiKey = "c816bfd866472a5d5c34043417f2524c";
     try {
       setIsLoading(true);
       const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${apiKey}`;

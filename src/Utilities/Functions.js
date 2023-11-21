@@ -14,6 +14,19 @@ export const fetchFlag = async (countryCode, handler) => {
   }
 };
 
+export const fetchWeatherImage = async (weather, handler) => {
+  try {
+    const apiKey = process.env.REACT_APP_API_KEY_IMAGE;
+    //const apiKey = "4cYiOCuFwdy2LCfi5wPyVQP5FCc9ffcgxgDauTJZ7nA";
+    const unsplashApiUrl = `https://api.unsplash.com/photos/random?query=${weather}&client_id=${apiKey}`;
+    const { data } = await axios(unsplashApiUrl);
+    //console.log(data.urls.full);
+    handler(data.urls.full);
+  } catch (error) {
+    console.error("Error:", error);
+  }
+};
+
 export const getCurrentPosition = () => {
   return new Promise((resolve, reject) => {
     navigator.geolocation.getCurrentPosition(
@@ -26,7 +39,7 @@ export const getCurrentPosition = () => {
 export const fetchCountryInfo = async (handler, setFlagUrl) => {
   try {
     const position = await getCurrentPosition();
-    const apiKey = "dd882254e4a845e8a90a1036f2f03bbc";
+    const apiKey = process.env.REACT_APP_API_KEY_COUNTRY;
     const { latitude, longitude } = position.coords;
     const { data } = await axios(
       `https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=${apiKey}`

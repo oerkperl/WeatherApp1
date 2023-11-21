@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from "react";
 import {
   WeatherPanel,
   Header,
@@ -11,6 +12,7 @@ import {
   WeatheConditionCard,
   Paragraph,
 } from "../StyledComponents";
+import { fetchWeatherImage } from "../../Utilities/Functions";
 
 export const Weather = ({ weather }) => {
   let weatheArr;
@@ -19,10 +21,14 @@ export const Weather = ({ weather }) => {
     weatheArr = weather.weather[0];
     iconUrl = `https://openweathermap.org/img/wn/${weatheArr.icon}@2x.png`;
   }
-
+  const [backgroundUrl, setBackgroundUrl] = useState("");
   const { name, sys, main, visibility, wind } = weather;
-  const backdropUrl =
-    "https://i.ibb.co/sCyBVrp/Dream-Shaper-v7-weather-app-UI-beautifully-centred-for-desktop-3.jpg";
+  //let backdropUrl;
+  //"https://i.ibb.co/sCyBVrp/Dream-Shaper-v7-weather-app-UI-beautifully-centred-for-desktop-3.jpg";
+
+  useEffect(() => {
+    fetchWeatherImage(weatheArr?.description, setBackgroundUrl);
+  }, [weatheArr]);
   //const weatheArr = currentCity.weather[0];
   //console.log(weatheArr);
   return (
@@ -46,7 +52,7 @@ export const Weather = ({ weather }) => {
       <WeatherPanel>
         <Container>
           <Lable>Recent Place</Lable>
-          <BigCard image={backdropUrl}>
+          <BigCard image={backgroundUrl}>
             <span>
               {weatheArr && (
                 <img src={iconUrl} alt="Icon" width={50} height={50} />
@@ -58,22 +64,22 @@ export const Weather = ({ weather }) => {
           </BigCard>
           <Lable>Weather</Lable>
           <WeatheCards>
-            <SmallCard>
+            <SmallCard image={backgroundUrl}>
               <span>Feels Like</span>
               <span>{Math.round(main?.feels_like)}°C</span>
               {weatheArr && <span>{weatheArr.main}</span>}
             </SmallCard>
-            <SmallCard>
+            <SmallCard image={backgroundUrl}>
               <span>Max Temp.</span>
               <span>{Math.round(main?.temp_max)}°C</span>
               {weatheArr && <span>{weatheArr.main}</span>}
             </SmallCard>
-            <SmallCard>
+            <SmallCard image={backgroundUrl}>
               <span>Min Temp.</span>
               <span>{Math.round(main?.temp_min)}°C</span>
               {weatheArr && <span>{weatheArr.main}</span>}
             </SmallCard>
-            <SmallCard>
+            <SmallCard image={backgroundUrl}>
               <span>Coulds</span>
               <span>{Math.round(main?.temp)}°C</span>
               {weatheArr && <span>{weatheArr.description}</span>}

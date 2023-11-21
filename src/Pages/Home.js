@@ -7,12 +7,13 @@ import axios from "axios";
 const Home = () => {
   const [currentLocation, setCurrentLocation] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+  const apiKey = process.env.REACT_APP_API_KEY_WEATHER;
 
   const getCurrentLocationWeather = async () => {
     setIsLoading(true);
     try {
       setIsLoading(true);
-      const apiKey = "c816bfd866472a5d5c34043417f2524c";
+
       const position = await getCurrentPosition();
       const { latitude, longitude } = position.coords;
       const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${apiKey}`;
