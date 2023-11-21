@@ -1,5 +1,3 @@
-//const [flagUrl, setFlagUrl] = useState("");
-//const { sys, main, name, id } = city;
 import axios from "axios";
 
 export const fetchFlag = async (countryCode, handler) => {
@@ -17,11 +15,10 @@ export const fetchFlag = async (countryCode, handler) => {
 export const fetchWeatherImage = async (weather, handler) => {
   try {
     const apiKey = process.env.REACT_APP_API_KEY_IMAGE;
-    //const apiKey = "4cYiOCuFwdy2LCfi5wPyVQP5FCc9ffcgxgDauTJZ7nA";
+
     const unsplashApiUrl = `https://api.unsplash.com/photos/random?query=${weather}&client_id=${apiKey}`;
     const { data } = await axios(unsplashApiUrl);
-    //console.log(data.urls.full);
-    handler(data.urls.full);
+    handler(data.urls.small);
   } catch (error) {
     console.error("Error:", error);
   }

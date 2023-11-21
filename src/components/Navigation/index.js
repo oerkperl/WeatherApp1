@@ -1,8 +1,6 @@
 import { Outlet, useNavigate, useParams } from "react-router-dom";
 import { fetchCountryInfo } from "../../Utilities/Functions";
-
 import axios from "axios";
-
 import {
   Nav,
   List,
@@ -18,7 +16,6 @@ import {
   Menu,
 } from "../StyledComponents";
 import { City } from "../CityComponent";
-
 import React, { useEffect, useState } from "react";
 
 const Navigation = () => {
@@ -32,7 +29,6 @@ const Navigation = () => {
   const [flagUrl, setFlagUrl] = useState("");
   const [isSidebarActive, setISidebarActive] = useState(true);
   const [screenSize, setScreenSize] = useState("");
-
   const handleChange = (event) => {
     setValue(event.target.value.trim().toLowerCase());
   };
@@ -65,6 +61,7 @@ const Navigation = () => {
       } else {
         updateCityRecord(data, id);
       }
+      handleDismis();
       setIsLoading(false);
     } catch (err) {
       setError(err.message);
@@ -142,7 +139,6 @@ const Navigation = () => {
   return (
     <>
       <GlobalStyle />
-
       <Menu
         onClick={activateSidebar}
         className={isSidebarActive ? "" : "sidebar-active"}
@@ -182,9 +178,7 @@ const Navigation = () => {
                     </div>
                   </StyledLink>
                 </Item>
-
                 <Item>{error && <div>{error}</div>}</Item>
-
                 <Item>
                   <form onSubmit={handleSubmit}>
                     <Input

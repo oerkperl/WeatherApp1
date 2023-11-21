@@ -23,14 +23,13 @@ export const Weather = ({ weather }) => {
   }
   const [backgroundUrl, setBackgroundUrl] = useState("");
   const { name, sys, main, visibility, wind } = weather;
-  //let backdropUrl;
-  //"https://i.ibb.co/sCyBVrp/Dream-Shaper-v7-weather-app-UI-beautifully-centred-for-desktop-3.jpg";
+  const defaultUrl =
+    "https://i.ibb.co/sCyBVrp/Dream-Shaper-v7-weather-app-UI-beautifully-centred-for-desktop-3.jpg";
 
   useEffect(() => {
     fetchWeatherImage(weatheArr?.description, setBackgroundUrl);
   }, [weatheArr]);
-  //const weatheArr = currentCity.weather[0];
-  //console.log(weatheArr);
+
   return (
     <>
       <Header>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getCurrentPosition } from "../Utilities/Functions";
 import { Weather } from "../components/WeatherComponent";
+import { SpinnerContainer } from "../components/StyledComponents";
 
 import axios from "axios";
 
@@ -13,12 +14,10 @@ const Home = () => {
     setIsLoading(true);
     try {
       setIsLoading(true);
-
       const position = await getCurrentPosition();
       const { latitude, longitude } = position.coords;
       const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${apiKey}`;
       const { data } = await axios.get(apiUrl);
-      //console.log(data);
       setCurrentLocation(data);
       setIsLoading(false);
     } catch (error) {
@@ -30,7 +29,12 @@ const Home = () => {
     getCurrentLocationWeather();
   }, []);
 
-  return <Weather weather={currentLocation} />;
+  return (
+    <>
+      {isLoading && <SpinnerContainer size="60px" />}
+      <Weather weather={currentLocation} />
+    </>
+  );
 };
 
 export default Home;
