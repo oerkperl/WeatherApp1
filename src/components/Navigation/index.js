@@ -1,6 +1,5 @@
 import axios from "axios";
 import { Outlet, useNavigate, useParams } from "react-router-dom";
-import { fetchCountryInfo, fetchFlag } from "../../utilities/Functions";
 import {
   Nav,
   List,
@@ -29,7 +28,6 @@ const Navigation = () => {
   const [flagUrl, setFlagUrl] = useState("");
   const [isSidebarActive, setISidebarActive] = useState(true);
   const [screenSize, setScreenSize] = useState("");
-  const [cityFlagUrl, setCityFlagUrl] = useState("");
   const apiKey = process.env.REACT_APP_API_KEY_WEATHER;
   const handleChange = (event) => {
     setValue(event.target.value.trim().toLowerCase());
@@ -47,22 +45,17 @@ const Navigation = () => {
     setValue("");
   };
 
-  const getWeather = async (city, id) => {
+  const getWeather = async (city) => {
     try {
       setIsLoading(true);
       const { data } = await axios(
         `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`
       );
       //console.log(data);
-      fetchFlag(data?.sys.country, setCityFlagUrl);
-      if (city && !id) {
-        const updatedCities = [...cities, data];
-        localStorage.setItem("citiesArray", JSON.stringify(updatedCities));
-        setCities(updatedCities);
-        navigate(city);
-      } else {
-        updateCityRecord(data, id);
-      }
+      const updatedCities = [...cities, data];
+      localStorage.setItem("citiesArray", JSON.stringify(updatedCities));
+      setCities(updatedCities);
+      navigate(city);
       handleDismis();
       setIsLoading(false);
     } catch (err) {
@@ -73,24 +66,35 @@ const Navigation = () => {
       }, 5000);
     }
   };
-  const updateCityRecord = (passedDate, passedId) => {
-    const updatedCities = cities.map((city) => {
-      if (city?.id === passedId) {
-        city = passedDate;
-      }
-      return city;
+
+  const getCurrentPosition = () => {
+    return new Promise((resolve, reject) => {
+      navigator.geolocation.getCurrentPosition(
+        (position) => resolve(position),
+        (error) => reject(error)
+      );
     });
-    localStorage.setItem("citiesArray", JSON.stringify(updatedCities));
-    setCities(updatedCities);
   };
 
-  const handleUpdate = (id, name) => {
-    getWeather(name, id);
-    handleDismis();
+  const fetchCountryInfo = async (setFlagUrl) => {
+    try {
+      const position = await getCurrentPosition();
+
+      const { latitude, longitude } = position.coords;
+      const { data } = await axios(
+        `https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=${process.env.REACT_APP_API_KEY_COUNTRY}`
+      );
+      const country = data.results[0].components;
+      setCountry(country);
+      const flagUrl = `https://flagcdn.com/${country.country_code}.svg`;
+      setFlagUrl(flagUrl);
+    } catch (error) {
+      console.error("Error:", error);
+    }
   };
 
   useEffect(() => {
-    fetchCountryInfo(setCountry, setFlagUrl);
+    fetchCountryInfo(setFlagUrl);
     const citiesString = localStorage.getItem("citiesArray");
     if (citiesString) {
       const citiesArray = JSON.parse(citiesString);
@@ -191,11 +195,7 @@ const Navigation = () => {
                 </Item>
                 {cities.map((city) => (
                   <CityItem key={city.id}>
-                    <City
-                      city={city}
-                      handleDelete={handleDelete}
-                      handleUpdate={handleUpdate}
-                    />
+                    <City city={city} handleDelete={handleDelete} />
                   </CityItem>
                 ))}
                 <Item>

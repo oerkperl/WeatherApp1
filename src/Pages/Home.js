@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { getCurrentPosition } from "../utilities/Functions";
 import { Weather } from "../components/WeatherComponent";
 import { SpinnerContainer } from "../components/StyledComponents";
 
@@ -8,6 +7,15 @@ const Home = () => {
   const [currentLocation, setCurrentLocation] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const apiKey = process.env.REACT_APP_API_KEY_WEATHER;
+
+  const getCurrentPosition = () => {
+    return new Promise((resolve, reject) => {
+      navigator.geolocation.getCurrentPosition(
+        (position) => resolve(position),
+        (error) => reject(error)
+      );
+    });
+  };
 
   const getCurrentLocationWeather = async () => {
     setIsLoading(true);

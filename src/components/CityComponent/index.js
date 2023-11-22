@@ -1,18 +1,12 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { fetchFlag } from "../../utilities/Functions";
 
 const StyledLink = styled(Link)`
   text-decoration: none;
 `;
-export const City = ({ city, handleDelete, handleUpdate }) => {
-  const [flagUrl, setFlagUrl] = useState("");
+export const City = ({ city, handleDelete }) => {
   const { sys, main, name, id } = city;
-
-  useEffect(() => {
-    fetchFlag(sys.country, setFlagUrl);
-  }, [sys.country]);
+  const flagUrl = `https://flagcdn.com/${sys?.country.toLowerCase()}.svg`;
 
   return (
     <>
@@ -32,8 +26,8 @@ export const City = ({ city, handleDelete, handleUpdate }) => {
       )}
       <span>{`${sys.country}`.toUpperCase() || "Cntr"}</span>
       <span>{`${name}`.toUpperCase()}</span>
-      <span>{Math.round(main?.temp)}°C</span>
-      <span onClick={() => handleUpdate(id, name.toLowerCase())}>
+      {/* <span>{Math.round(main?.temp)}°C</span> */}
+      <span>
         <StyledLink to={`/${name.toLowerCase()}`}>
           <i className="fa-solid fa-arrow-right"></i>
         </StyledLink>
