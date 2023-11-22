@@ -42,7 +42,6 @@ export const Weather = ({ weather }) => {
   useEffect(() => {
     fetchWeatherImage(weatheArr?.description);
   }, [weatheArr]);
-
   return (
     <>
       <Header>

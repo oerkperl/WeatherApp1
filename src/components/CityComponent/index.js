@@ -7,7 +7,6 @@ const StyledLink = styled(Link)`
 export const City = ({ city, handleDelete }) => {
   const { sys, name, id } = city;
   const flagUrl = `https://flagcdn.com/${sys?.country.toLowerCase()}.svg`;
-
   return (
     <>
       <span onClick={() => handleDelete(id, name)}>

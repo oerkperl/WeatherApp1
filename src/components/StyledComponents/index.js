@@ -10,10 +10,7 @@ export const GlobalStyle = createGlobalStyle`
     font-family: 'Plus Jakarta Sans', sans-serif;
     position:relative;
   }
-
-
 `;
-
 const spin = keyframes`
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
@@ -34,7 +31,6 @@ export const SpinnerContainer = styled.div`
 
 export const Wrapper = styled.div`
   display: flex;
-
   border-bottom: 1px solid lightgrey;
   &.sidebar-active {
     @media (max-width: 1000px) {
@@ -68,10 +64,8 @@ export const Sidebar = styled.div`
   }
 `;
 export const Button = styled.button``;
-
 export const Menu = styled(Button)`
   position: absolute;
-
   margin: 0.5rem 0 0 1rem;
   font-size: 20px;
   border: none;
@@ -278,7 +272,9 @@ const Card = styled.div.attrs((props) => ({
   color: #fff;
   display: flex;
   min-height: 100px;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  box-shadow:
+    0 3px 6px rgba(0, 0, 0, 0.16),
+    0 3px 6px rgba(0, 0, 0, 0.23);
 `;
 export const TranspareFilm = styled.div`
   position: absolute;
