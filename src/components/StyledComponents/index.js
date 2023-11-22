@@ -150,7 +150,14 @@ export const CityItem = styled(Item)`
     }
   }
 `;
-
+export const DummyCity = styled.div`
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 3px;
+  width: 95%;
+  height: 30px;
+  padding: 0.5rem;
+  border: none;
+`;
 export const Input = styled.input`
   background-color: rgba(0, 0, 0, 0.05);
   border-radius: 3px;

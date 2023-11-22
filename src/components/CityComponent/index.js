@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { fetchFlag } from "../../Utilities/Functions";
+import { fetchFlag } from "../../utilities/Functions";
 
 const StyledLink = styled(Link)`
   text-decoration: none;
@@ -9,6 +9,7 @@ const StyledLink = styled(Link)`
 export const City = ({ city, handleDelete, handleUpdate }) => {
   const [flagUrl, setFlagUrl] = useState("");
   const { sys, main, name, id } = city;
+
   useEffect(() => {
     fetchFlag(sys.country, setFlagUrl);
   }, [sys.country]);

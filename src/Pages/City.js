@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 import { useParams } from "react-router-dom";
 import { Weather } from "../components/WeatherComponent";
 import { SpinnerContainer } from "../components/StyledComponents";
-import axios from "axios";
 
+const apiKey = process.env.REACT_APP_API_KEY_WEATHER;
 const City = () => {
   const { city } = useParams();
   const [currentCity, setCurrentCity] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
-  const apiKey = process.env.REACT_APP_API_KEY_WEATHER;
+
   const getWeather = async (cityName) => {
     try {
       setIsLoading(true);

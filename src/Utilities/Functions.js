@@ -1,5 +1,5 @@
 import axios from "axios";
-
+const apiKey = process.env.REACT_APP_API_KEY_COUNTRY;
 export const fetchFlag = async (countryCode, handler) => {
   try {
     const { data } = await axios(
@@ -9,18 +9,6 @@ export const fetchFlag = async (countryCode, handler) => {
     handler(flagUrl);
   } catch (error) {
     console.error("Error:", error);
-  }
-};
-
-export const fetchWeatherImage = async (weather, handler) => {
-  try {
-    const apiKey = process.env.REACT_APP_API_KEY_IMAGE;
-    //comment
-    const unsplashApiUrl = `https://api.unsplash.com/photos/random?query=${weather}&client_id=${apiKey}`;
-    const { data } = await axios(unsplashApiUrl);
-    handler(data.urls.small);
-  } catch (error) {
-    return;
   }
 };
 
@@ -36,7 +24,7 @@ export const getCurrentPosition = () => {
 export const fetchCountryInfo = async (handler, setFlagUrl) => {
   try {
     const position = await getCurrentPosition();
-    const apiKey = process.env.REACT_APP_API_KEY_COUNTRY;
+
     const { latitude, longitude } = position.coords;
     const { data } = await axios(
       `https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=${apiKey}`

@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { getCurrentPosition } from "../Utilities/Functions";
+import axios from "axios";
+import { getCurrentPosition } from "../utilities/Functions";
 import { Weather } from "../components/WeatherComponent";
 import { SpinnerContainer } from "../components/StyledComponents";
-
-import axios from "axios";
 
 const Home = () => {
   const [currentLocation, setCurrentLocation] = useState({});

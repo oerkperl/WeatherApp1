@@ -1,6 +1,6 @@
-import { Outlet, useNavigate, useParams } from "react-router-dom";
-import { fetchCountryInfo } from "../../Utilities/Functions";
 import axios from "axios";
+import { Outlet, useNavigate, useParams } from "react-router-dom";
+import { fetchCountryInfo, fetchFlag } from "../../utilities/Functions";
 import {
   Nav,
   List,
@@ -11,9 +11,9 @@ import {
   Item,
   Input,
   Logo,
-  GlobalStyle,
   StyledLink,
   Menu,
+  DummyCity,
 } from "../StyledComponents";
 import { City } from "../CityComponent";
 import React, { useEffect, useState } from "react";
@@ -29,6 +29,8 @@ const Navigation = () => {
   const [flagUrl, setFlagUrl] = useState("");
   const [isSidebarActive, setISidebarActive] = useState(true);
   const [screenSize, setScreenSize] = useState("");
+  const [cityFlagUrl, setCityFlagUrl] = useState("");
+  const apiKey = process.env.REACT_APP_API_KEY_WEATHER;
   const handleChange = (event) => {
     setValue(event.target.value.trim().toLowerCase());
   };
@@ -46,14 +48,14 @@ const Navigation = () => {
   };
 
   const getWeather = async (city, id) => {
-    const apiKey = process.env.REACT_APP_API_KEY_WEATHER;
     try {
       setIsLoading(true);
       const { data } = await axios(
         `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`
       );
       //console.log(data);
-      if (!id) {
+      fetchFlag(data?.sys.country, setCityFlagUrl);
+      if (city && !id) {
         const updatedCities = [...cities, data];
         localStorage.setItem("citiesArray", JSON.stringify(updatedCities));
         setCities(updatedCities);
@@ -73,7 +75,7 @@ const Navigation = () => {
   };
   const updateCityRecord = (passedDate, passedId) => {
     const updatedCities = cities.map((city) => {
-      if (city.id === passedId) {
+      if (city?.id === passedId) {
         city = passedDate;
       }
       return city;
@@ -97,7 +99,7 @@ const Navigation = () => {
   }, []);
 
   const handleDelete = (id, cityName) => {
-    const updatedCities = cities.filter((city) => city.id !== id);
+    const updatedCities = cities.filter((city) => city?.id !== id);
     localStorage.setItem("citiesArray", JSON.stringify(updatedCities));
     setCities(updatedCities);
 
@@ -138,7 +140,6 @@ const Navigation = () => {
 
   return (
     <>
-      <GlobalStyle />
       <Menu
         onClick={activateSidebar}
         className={isSidebarActive ? "" : "sidebar-active"}
@@ -197,6 +198,13 @@ const Navigation = () => {
                     />
                   </CityItem>
                 ))}
+                <Item>
+                  {isLoading && (
+                    <div>
+                      <DummyCity></DummyCity>
+                    </div>
+                  )}
+                </Item>
               </List>
             </Nav>
           </Sidebar>

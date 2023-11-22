@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import {
   WeatherPanel,
   Header,
@@ -14,7 +15,6 @@ import {
   TranspareFilm,
   WeatherIcon,
 } from "../StyledComponents";
-import { fetchWeatherImage } from "../../Utilities/Functions";
 
 export const Weather = ({ weather }) => {
   let weatheArr;
@@ -28,8 +28,19 @@ export const Weather = ({ weather }) => {
   );
   const { name, main, visibility, wind } = weather;
 
+  const fetchWeatherImage = async (weather) => {
+    try {
+      const apiKey = process.env.REACT_APP_API_KEY_IMAGE;
+      const unsplashApiUrl = `https://api.unsplash.com/photos/random?query=${weather}&client_id=${apiKey}`;
+      const { data } = await axios(unsplashApiUrl);
+      setBackgroundUrl(data.urls.small);
+    } catch (error) {
+      return;
+    }
+  };
+
   useEffect(() => {
-    fetchWeatherImage(weatheArr?.description, setBackgroundUrl);
+    fetchWeatherImage(weatheArr?.description);
   }, [weatheArr]);
 
   return (
