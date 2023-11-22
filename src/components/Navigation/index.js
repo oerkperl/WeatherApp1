@@ -41,18 +41,20 @@ const Navigation = () => {
       handleDismis();
       return;
     }
-    getWeather(value);
+    addCity(value);
     setValue("");
   };
 
-  const getWeather = async (city) => {
+  const addCity = async (city) => {
     try {
       setIsLoading(true);
       const { data } = await axios(
         `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`
       );
+      const { sys, name, id } = data;
+      const newData = { id, name, sys };
       //console.log(data);
-      const updatedCities = [...cities, data];
+      const updatedCities = [...cities, newData];
       localStorage.setItem("citiesArray", JSON.stringify(updatedCities));
       setCities(updatedCities);
       navigate(city);
@@ -76,7 +78,7 @@ const Navigation = () => {
     });
   };
 
-  const fetchCountryInfo = async (setFlagUrl) => {
+  const currentLocationInfo = async () => {
     try {
       const position = await getCurrentPosition();
 
@@ -94,7 +96,7 @@ const Navigation = () => {
   };
 
   useEffect(() => {
-    fetchCountryInfo(setFlagUrl);
+    currentLocationInfo();
     const citiesString = localStorage.getItem("citiesArray");
     if (citiesString) {
       const citiesArray = JSON.parse(citiesString);
