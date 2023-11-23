@@ -48,12 +48,11 @@ const Navigation = () => {
   const addCity = async (city) => {
     try {
       setIsLoading(true);
-      const { data } = await axios(
+      const { data: { sys, name, id } } = await axios(
         `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`
       );
-      const { sys, name, id } = data;
+      
       const newCity = { id, name, sys };
-      //console.log(data);
       const updatedCities = [...cities, newCity];
       localStorage.setItem("citiesArray", JSON.stringify(updatedCities));
       setCities(updatedCities);
