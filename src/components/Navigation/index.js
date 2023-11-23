@@ -197,7 +197,11 @@ const Navigation = () => {
                 </Item>
                 {cities.map((city) => (
                   <CityItem key={city.id}>
-                    <City city={city} handleDelete={handleDelete} />
+                    <City
+                      city={city}
+                      handleDelete={handleDelete}
+                      handleDismis={handleDismis}
+                    />
                   </CityItem>
                 ))}
                 <Item>
