@@ -272,9 +272,8 @@ const Card = styled.div.attrs((props) => ({
   color: #fff;
   display: flex;
   min-height: 100px;
-  box-shadow:
-    0 3px 6px rgba(0, 0, 0, 0.16),
-    0 3px 6px rgba(0, 0, 0, 0.23);
+  border-radius: 5px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.23);
 `;
 export const TranspareFilm = styled.div`
   position: absolute;
@@ -283,6 +282,7 @@ export const TranspareFilm = styled.div`
   width: 100%;
   box-sizing: border-box;
   padding: 0.25rem;
+  border-radius: 5px;
 `;
 
 export const WeatherIcon = styled.div`
@@ -292,7 +292,6 @@ export const WeatherIcon = styled.div`
 `;
 export const BigCard = styled(Card)`
   margin: 1rem 0;
-
   background: url(${(props) => props.image}});
   background-size: cover;
   background-position: center;
