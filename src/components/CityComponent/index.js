@@ -6,7 +6,8 @@ const StyledLink = styled(Link)`
 `;
 export const City = ({ city, handleDelete }) => {
   const { sys, name, id } = city;
-  const flagUrl = `https://flagcdn.com/${sys?.country.toLowerCase()}.svg`;
+
+  const flagUrl = `https://flagcdn.com/${`${sys?.country}`.toLowerCase()}.svg`;
   return (
     <>
       <span onClick={() => handleDelete(id, name)}>
@@ -26,7 +27,7 @@ export const City = ({ city, handleDelete }) => {
       <span>{`${sys.country}`.toUpperCase() || "Cntr"}</span>
       <span>{`${name}`.toUpperCase()}</span>
       <span>
-        <StyledLink to={`/${name.toLowerCase()}`}>
+        <StyledLink to={`/${name}`.toLowerCase()}>
           <i className="fa-solid fa-arrow-right"></i>
         </StyledLink>
       </span>
