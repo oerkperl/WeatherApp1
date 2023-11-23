@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const StyledLink = styled(Link)`
   text-decoration: none;
 `;
-export const City = ({ city, handleDelete }) => {
+export const City = ({ city, handleDelete, handleDismis }) => {
   const { sys, name, id } = city;
 
   const flagUrl = `https://flagcdn.com/${`${sys?.country}`.toLowerCase()}.svg`;
@@ -26,7 +26,7 @@ export const City = ({ city, handleDelete }) => {
       )}
       <span>{`${sys.country}`.toUpperCase() || "Cntr"}</span>
       <span>{`${name}`.toUpperCase()}</span>
-      <span>
+      <span onClick={() => handleDismis()}>
         <StyledLink to={`/${name}`.toLowerCase()}>
           <i className="fa-solid fa-arrow-right"></i>
         </StyledLink>

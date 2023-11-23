@@ -48,10 +48,12 @@ const Navigation = () => {
   const addCity = async (city) => {
     try {
       setIsLoading(true);
-      const { data: { sys, name, id } } = await axios(
-        `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`
+      const {
+        data: { sys, name, id },
+      } = await axios(
+        `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`,
       );
-      
+
       const newCity = { id, name, sys };
       const updatedCities = [...cities, newCity];
       localStorage.setItem("citiesArray", JSON.stringify(updatedCities));
@@ -72,7 +74,7 @@ const Navigation = () => {
     return new Promise((resolve, reject) => {
       navigator.geolocation.getCurrentPosition(
         (position) => resolve(position),
-        (error) => reject(error)
+        (error) => reject(error),
       );
     });
   };
@@ -83,7 +85,7 @@ const Navigation = () => {
 
       const { latitude, longitude } = position.coords;
       const { data } = await axios(
-        `https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=${process.env.REACT_APP_API_KEY_COUNTRY}`
+        `https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=${process.env.REACT_APP_API_KEY_COUNTRY}`,
       );
       const country = data.results[0].components;
       setCountry(country);
@@ -196,7 +198,11 @@ const Navigation = () => {
                 </Item>
                 {cities.map((city) => (
                   <CityItem key={city.id}>
-                    <City city={city} handleDelete={handleDelete} />
+                    <City
+                      city={city}
+                      handleDelete={handleDelete}
+                      handelDismis={handleDismis}
+                    />
                   </CityItem>
                 ))}
                 <Item>
