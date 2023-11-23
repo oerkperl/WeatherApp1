@@ -52,9 +52,9 @@ const Navigation = () => {
         `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`
       );
       const { sys, name, id } = data;
-      const newData = { id, name, sys };
+      const newCity = { id, name, sys };
       //console.log(data);
-      const updatedCities = [...cities, newData];
+      const updatedCities = [...cities, newCity];
       localStorage.setItem("citiesArray", JSON.stringify(updatedCities));
       setCities(updatedCities);
       navigate(city);
