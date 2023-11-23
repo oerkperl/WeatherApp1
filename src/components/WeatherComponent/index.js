@@ -27,7 +27,6 @@ export const Weather = ({ weather }) => {
     "https://i.ibb.co/sCyBVrp/Dream-Shaper-v7-weather-app-UI-beautifully-centred-for-desktop-3.jpg"
   );
   const { name, main, visibility, wind } = weather;
-
   const fetchWeatherImage = async (weather) => {
     try {
       const apiKey = process.env.REACT_APP_API_KEY_IMAGE;
