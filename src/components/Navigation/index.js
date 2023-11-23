@@ -201,11 +201,7 @@ const Navigation = () => {
                     <City
                       city={city}
                       handleDelete={handleDelete}
-<<<<<<< HEAD
-                      handelDismis={handleDismis}
-=======
                       handleDismis={handleDismis}
->>>>>>> ce1f428a26ecaf47965ade942c8f49b358c41f09
                     />
                   </CityItem>
                 ))}
