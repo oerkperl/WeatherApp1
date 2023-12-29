@@ -245,6 +245,7 @@ export const WeatherPanel = styled.div`
     justify-content: center;
     align-items: center;
     ${Container} {
+      border: 1px solid red;
       width: 100%;
       box-sizing: border-box;
     }

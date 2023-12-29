@@ -19,6 +19,10 @@ import {
 export const Weather = ({ weather }) => {
   let weatheArr;
   let iconUrl;
+  const paragraphText = `The air quality is generally acceptable for most individuals.
+  However, sensitive groups may experience minor to moderate
+  symptoms from long-term exposure.`;
+
   if (weather.weather) {
     weatheArr = weather.weather[0];
     iconUrl = `https://openweathermap.org/img/wn/${weatheArr.icon}@2x.png`;
@@ -117,11 +121,7 @@ export const Weather = ({ weather }) => {
                 <Lable>Humidity</Lable>
                 <Lable>{main?.humidity}</Lable>
               </div>
-              <Paragraph>
-                The air quality is generally acceptable for most individuals.
-                However, sensitive groups may experience minor to moderate
-                symptoms from long-term exposure.
-              </Paragraph>
+              <Paragraph>{paragraphText}</Paragraph>
             </WeatheConditionCard>
             <WeatheConditionCard>
               <span>
@@ -131,11 +131,7 @@ export const Weather = ({ weather }) => {
                 <Lable>Pressure</Lable>
                 <Lable>{main?.pressure}</Lable>
               </div>
-              <Paragraph>
-                The air quality is generally acceptable for most individuals.
-                However, sensitive groups may experience minor to moderate
-                symptoms from long-term exposure.
-              </Paragraph>
+              <Paragraph>{paragraphText}</Paragraph>
             </WeatheConditionCard>
             <WeatheConditionCard>
               <span>
@@ -145,11 +141,7 @@ export const Weather = ({ weather }) => {
                 <Lable>Visibility</Lable>
                 <Lable>{visibility}</Lable>
               </div>
-              <Paragraph>
-                The air quality is generally acceptable for most individuals.
-                However, sensitive groups may experience minor to moderate
-                symptoms from long-term exposure.
-              </Paragraph>
+              <Paragraph>{paragraphText}</Paragraph>
             </WeatheConditionCard>
             <WeatheConditionCard>
               <span>
@@ -159,11 +151,7 @@ export const Weather = ({ weather }) => {
                 <Lable>Wind</Lable>
                 <Lable>{wind?.speed}</Lable>
               </div>
-              <Paragraph>
-                The air quality is generally acceptable for most individuals.
-                However, sensitive groups may experience minor to moderate
-                symptoms from long-term exposure.
-              </Paragraph>
+              <Paragraph>{paragraphText}</Paragraph>
             </WeatheConditionCard>
           </WeatheCondition>
         </Container>
